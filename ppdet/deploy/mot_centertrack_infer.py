@@ -22,21 +22,21 @@ import numpy as np
 from collections import defaultdict
 import paddle
 
-from benchmark_utils import PaddleInferBenchmark
-from utils import gaussian_radius, gaussian2D, draw_umich_gaussian
-from preprocess import preprocess, decode_image, WarpAffine, NormalizeImage, Permute
-from utils import argsparser, Timer, get_current_memory_mb
-from infer import Detector, get_test_images, print_arguments, bench_log, PredictConfig
-from keypoint_preprocess import get_affine_transform
+from .benchmark_utils import PaddleInferBenchmark
+from .utils import gaussian_radius, gaussian2D, draw_umich_gaussian
+from .preprocess import preprocess, decode_image, WarpAffine, NormalizeImage, Permute
+from .utils import argsparser, Timer, get_current_memory_mb
+from .infer import Detector, get_test_images, print_arguments, bench_log, PredictConfig
+from .keypoint_preprocess import get_affine_transform
 
 # add python path
-import sys
-parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
-sys.path.insert(0, parent_path)
+# import sys
+# parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
+# sys.path.insert(0, parent_path)
 
-from pptracking.python.mot import CenterTracker
-from pptracking.python.mot.utils import MOTTimer, write_mot_results
-from pptracking.python.mot.visualize import plot_tracking
+from .pptracking.mot import CenterTracker
+from .pptracking.mot.utils import MOTTimer, write_mot_results
+from .pptracking.mot.visualize import plot_tracking
 
 
 def transform_preds_with_trans(coords, trans):

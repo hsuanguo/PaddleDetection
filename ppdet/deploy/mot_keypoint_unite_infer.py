@@ -22,25 +22,25 @@ import yaml
 import copy
 from collections import defaultdict
 
-from mot_keypoint_unite_utils import argsparser
-from preprocess import decode_image
-from infer import print_arguments, get_test_images, bench_log
-from mot_sde_infer import SDE_Detector
-from mot_jde_infer import JDE_Detector, MOT_JDE_SUPPORT_MODELS
-from keypoint_infer import KeyPointDetector, KEYPOINT_SUPPORT_MODELS
-from det_keypoint_unite_infer import predict_with_given_det
-from visualize import visualize_pose
-from benchmark_utils import PaddleInferBenchmark
-from utils import get_current_memory_mb
-from keypoint_postprocess import translate_to_ori_images
+from .mot_keypoint_unite_utils import argsparser
+from .preprocess import decode_image
+from .infer import print_arguments, get_test_images, bench_log
+from .mot_sde_infer import SDE_Detector
+from .mot_jde_infer import JDE_Detector, MOT_JDE_SUPPORT_MODELS
+from .keypoint_infer import KeyPointDetector, KEYPOINT_SUPPORT_MODELS
+from .det_keypoint_unite_infer import predict_with_given_det
+from .visualize import visualize_pose
+from .benchmark_utils import PaddleInferBenchmark
+from .utils import get_current_memory_mb
+from .keypoint_postprocess import translate_to_ori_images
 
 # add python path
-import sys
-parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
-sys.path.insert(0, parent_path)
+# import sys
+# parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
+# sys.path.insert(0, parent_path)
 
-from pptracking.python.mot.visualize import plot_tracking, plot_tracking_dict
-from pptracking.python.mot.utils import MOTTimer as FPSTimer
+from .pptracking.mot.visualize import plot_tracking, plot_tracking_dict
+from .pptracking.mot.utils import MOTTimer as FPSTimer
 
 
 def convert_mot_to_det(tlwhs, scores):

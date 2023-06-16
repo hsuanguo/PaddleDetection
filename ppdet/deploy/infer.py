@@ -28,8 +28,8 @@ from paddle.inference import create_predictor
 
 import sys
 # add deploy path of PaddleDetection to sys.path
-parent_path = os.path.abspath(os.path.join(__file__, *(['..'])))
-sys.path.insert(0, parent_path)
+# parent_path = os.path.abspath(os.path.join(__file__, *(['..'])))
+# sys.path.insert(0, parent_path)
 
 from .benchmark_utils import PaddleInferBenchmark
 from .picodet_postprocess import PicoDetPostProcess

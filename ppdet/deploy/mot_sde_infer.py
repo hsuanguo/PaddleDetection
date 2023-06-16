@@ -20,19 +20,19 @@ import numpy as np
 from collections import defaultdict
 import paddle
 
-from benchmark_utils import PaddleInferBenchmark
-from preprocess import decode_image
-from utils import argsparser, Timer, get_current_memory_mb
-from infer import Detector, get_test_images, print_arguments, bench_log, PredictConfig, load_predictor
+from .benchmark_utils import PaddleInferBenchmark
+from .preprocess import decode_image
+from .utils import argsparser, Timer, get_current_memory_mb
+from .infer import Detector, get_test_images, print_arguments, bench_log, PredictConfig, load_predictor
 
 # add python path
-import sys
-parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
-sys.path.insert(0, parent_path)
+# import sys
+# parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
+# sys.path.insert(0, parent_path)
 
-from pptracking.python.mot import JDETracker, DeepSORTTracker
-from pptracking.python.mot.utils import MOTTimer, write_mot_results, get_crops, clip_box
-from pptracking.python.mot.visualize import plot_tracking, plot_tracking_dict
+from .pptracking.mot import JDETracker, DeepSORTTracker
+from .pptracking.mot.utils import MOTTimer, write_mot_results, get_crops, clip_box
+from .pptracking.mot.visualize import plot_tracking, plot_tracking_dict
 
 
 class SDE_Detector(Detector):
