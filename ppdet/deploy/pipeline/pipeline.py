@@ -63,7 +63,7 @@ from ppdet.deploy.pipeline.ppvehicle.vehicle_pressing import VehiclePressingReco
 from ppdet.deploy.pipeline.ppvehicle.vehicle_retrograde import VehicleRetrogradeRecognizer
 from ppdet.deploy.pipeline.ppvehicle.lane_seg_infer import LaneSegPredictor
 
-from .download import auto_download_model
+from ppdet.deploy.pipeline.download import auto_download_model
 
 
 class Pipeline(object):

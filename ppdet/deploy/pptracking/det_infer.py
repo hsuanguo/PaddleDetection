@@ -25,16 +25,11 @@ import paddle
 from paddle.inference import Config
 from paddle.inference import create_predictor
 
-import sys
-# add deploy path of PaddleDetection to sys.path
-# parent_path = os.path.abspath(os.path.join(__file__, *(['..'])))
-# sys.path.insert(0, parent_path)
-
-from .benchmark_utils import PaddleInferBenchmark
-from .picodet_postprocess import PicoDetPostProcess
-from .preprocess import preprocess, Resize, NormalizeImage, Permute, PadStride, LetterBoxResize, Pad, decode_image
-from .mot.visualize import visualize_box_mask
-from .mot_utils import argsparser, Timer, get_current_memory_mb
+from ppdet.deploy.pptracking.benchmark_utils import PaddleInferBenchmark
+from ppdet.deploy.pptracking.picodet_postprocess import PicoDetPostProcess
+from ppdet.deploy.pptracking.preprocess import preprocess, Resize, NormalizeImage, Permute, PadStride, LetterBoxResize, Pad, decode_image
+from ppdet.deploy.pptracking.mot.visualize import visualize_box_mask
+from ppdet.deploy.pptracking.mot_utils import argsparser, Timer, get_current_memory_mb
 
 # Global dictionary
 SUPPORT_MODELS = {

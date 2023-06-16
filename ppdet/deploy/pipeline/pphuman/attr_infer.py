@@ -24,10 +24,6 @@ import paddle
 from paddle.inference import Config
 from paddle.inference import create_predictor
 
-import sys
-# add deploy path of PaddleDetection to sys.path
-# parent_path = os.path.abspath(os.path.join(__file__, *(['..'])))
-# sys.path.insert(0, parent_path)
 
 from ppdet.deploy.benchmark_utils import PaddleInferBenchmark
 from ppdet.deploy.preprocess import preprocess, Resize, NormalizeImage, Permute, PadStride, LetterBoxResize, WarpAffine

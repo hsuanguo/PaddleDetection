@@ -23,14 +23,10 @@ import numpy as np
 import math
 import paddle
 
-import sys
-# parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 3)))
-# sys.path.insert(0, parent_path)
-
 from ppdet.deploy.infer import get_test_images
 from ppdet.deploy.preprocess import preprocess, NormalizeImage, Permute, Resize_Mult32
-from .vehicle_plateutils import create_predictor, get_infer_gpuid, get_rotate_crop_image, draw_boxes
-from .vehicleplate_postprocess import build_post_process
+from ppdet.deploy.pipeline.ppvehicle.vehicle_plateutils import create_predictor, get_infer_gpuid, get_rotate_crop_image, draw_boxes
+from ppdet.deploy.pipeline.ppvehicle.vehicleplate_postprocess import build_post_process
 from ppdet.deploy.pipeline.cfg_utils import merge_cfg, print_arguments, argsparser
 
 

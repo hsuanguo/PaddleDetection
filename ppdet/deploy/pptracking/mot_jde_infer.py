@@ -20,19 +20,14 @@ import numpy as np
 from collections import defaultdict
 import paddle
 
-from .benchmark_utils import PaddleInferBenchmark
-from .preprocess import decode_image
-from .mot_utils import argsparser, Timer, get_current_memory_mb
-from .det_infer import Detector, get_test_images, print_arguments, bench_log, PredictConfig
+from ppdet.deploy.pptracking.benchmark_utils import PaddleInferBenchmark
+from ppdet.deploy.pptracking.preprocess import decode_image
+from ppdet.deploy.pptracking.mot_utils import argsparser, Timer, get_current_memory_mb
+from ppdet.deploy.pptracking.det_infer import Detector, get_test_images, print_arguments, bench_log, PredictConfig
 
-# add python path
-# import sys
-# parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
-# sys.path.insert(0, parent_path)
-
-from .mot import JDETracker
-from .mot.utils import MOTTimer, write_mot_results, flow_statistic
-from .mot.visualize import plot_tracking, plot_tracking_dict
+from ppdet.deploy.pptracking.mot import JDETracker
+from ppdet.deploy.pptracking.mot.utils import MOTTimer, write_mot_results, flow_statistic
+from ppdet.deploy.pptracking.mot.visualize import plot_tracking, plot_tracking_dict
 
 # Global dictionary
 MOT_JDE_SUPPORT_MODELS = {
