@@ -14,7 +14,7 @@
 
 import cv2
 import numpy as np
-from .keypoint_preprocess import get_affine_transform
+from ppdet.deploy.keypoint_preprocess import get_affine_transform
 from PIL import Image
 
 

@@ -13,30 +13,21 @@
 # limitations under the License.
 
 import os
-import time
 import yaml
-import glob
 from functools import reduce
 
-from PIL import Image
 import cv2
 import math
 import numpy as np
 import paddle
 
-import sys
-# add deploy path of PaddleDetection to sys.path
-# parent_path = os.path.abspath(os.path.join(__file__, *(['..'])))
-# sys.path.insert(0, parent_path)
+from ppdet.deploy.keypoint_preprocess import expand_crop
+from ppdet.deploy.keypoint_postprocess import HrHRNetPostProcess, HRNetPostProcess
+from ppdet.deploy.visualize import visualize_pose
 
-from .preprocess import preprocess, NormalizeImage, Permute
-from .keypoint_preprocess import EvalAffine, TopDownEvalAffine, expand_crop
-from .keypoint_postprocess import HrHRNetPostProcess, HRNetPostProcess
-from .visualize import visualize_pose
-
-from .utils import argsparser, Timer, get_current_memory_mb
-from .benchmark_utils import PaddleInferBenchmark
-from .infer import Detector, get_test_images, print_arguments
+from ppdet.deploy.utils import argsparser,  get_current_memory_mb
+from ppdet.deploy.benchmark_utils import PaddleInferBenchmark
+from ppdet.deploy.infer import Detector, get_test_images, print_arguments
 
 # Global dictionary
 KEYPOINT_SUPPORT_MODELS = {

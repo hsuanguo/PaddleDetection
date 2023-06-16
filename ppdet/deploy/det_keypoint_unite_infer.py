@@ -20,14 +20,14 @@ import numpy as np
 import paddle
 import yaml
 
-from .det_keypoint_unite_utils import argsparser
-from .preprocess import decode_image
-from .infer import Detector, DetectorPicoDet, PredictConfig, print_arguments, get_test_images, bench_log
-from .keypoint_infer import KeyPointDetector, PredictConfig_KeyPoint
-from .visualize import visualize_pose
-from .benchmark_utils import PaddleInferBenchmark
-from .utils import get_current_memory_mb
-from .keypoint_postprocess import translate_to_ori_images
+from ppdet.deploy.det_keypoint_unite_utils import argsparser
+from ppdet.deploy.preprocess import decode_image
+from ppdet.deploy.infer import Detector, DetectorPicoDet, PredictConfig, print_arguments, get_test_images, bench_log
+from ppdet.deploy.keypoint_infer import KeyPointDetector, PredictConfig_KeyPoint
+from ppdet.deploy.visualize import visualize_pose
+from ppdet.deploy.benchmark_utils import PaddleInferBenchmark
+from ppdet.deploy.utils import get_current_memory_mb
+from ppdet.deploy.keypoint_postprocess import translate_to_ori_images
 
 KEYPOINT_SUPPORT_MODELS = {
     'HigherHRNet': 'keypoint_bottomup',

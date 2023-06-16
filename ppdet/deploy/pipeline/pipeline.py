@@ -35,10 +35,10 @@ except Exception:
 # parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
 # sys.path.insert(0, parent_path)
 
-from .cfg_utils import argsparser, print_arguments, merge_cfg
-from .pipe_utils import PipeTimer
-from .pipe_utils import get_test_images, crop_image_with_det, crop_image_with_mot, parse_mot_res, parse_mot_keypoint
-from .pipe_utils import PushStream
+from ppdet.deploy.pipeline.cfg_utils import argsparser, print_arguments, merge_cfg
+from ppdet.deploy.pipeline.pipe_utils import PipeTimer
+from ppdet.deploy.pipeline.pipe_utils import get_test_images, crop_image_with_det, crop_image_with_mot, parse_mot_res, parse_mot_keypoint
+from ppdet.deploy.pipeline.pipe_utils import PushStream
 
 from ppdet.deploy.infer import Detector, DetectorPicoDet
 from ppdet.deploy.keypoint_infer import KeyPointDetector
@@ -50,18 +50,18 @@ from ppdet.deploy.pptracking.mot_sde_infer import SDE_Detector
 from ppdet.deploy.pptracking.mot.visualize import plot_tracking_dict
 from ppdet.deploy.pptracking.mot.utils import flow_statistic, update_object_info
 
-from .pphuman.attr_infer import AttrDetector
-from .pphuman.video_action_infer import VideoActionRecognizer
-from .pphuman.action_infer import SkeletonActionRecognizer, DetActionRecognizer, ClsActionRecognizer
-from .pphuman.action_utils import KeyPointBuff, ActionVisualHelper
-from .pphuman.reid import ReID
-from .pphuman.mtmct import mtmct_process
+from ppdet.deploy.pipeline.pphuman.attr_infer import AttrDetector
+from ppdet.deploy.pipeline.pphuman.video_action_infer import VideoActionRecognizer
+from ppdet.deploy.pipeline.pphuman.action_infer import SkeletonActionRecognizer, DetActionRecognizer, ClsActionRecognizer
+from ppdet.deploy.pipeline.pphuman.action_utils import KeyPointBuff, ActionVisualHelper
+from ppdet.deploy.pipeline.pphuman.reid import ReID
+from ppdet.deploy.pipeline.pphuman.mtmct import mtmct_process
 
-from .ppvehicle.vehicle_plate import PlateRecognizer
-from .ppvehicle.vehicle_attr import VehicleAttr
-from .ppvehicle.vehicle_pressing import VehiclePressingRecognizer
-from .ppvehicle.vehicle_retrograde import VehicleRetrogradeRecognizer
-from .ppvehicle.lane_seg_infer import LaneSegPredictor
+from ppdet.deploy.pipeline.ppvehicle.vehicle_plate import PlateRecognizer
+from ppdet.deploy.pipeline.ppvehicle.vehicle_attr import VehicleAttr
+from ppdet.deploy.pipeline.ppvehicle.vehicle_pressing import VehiclePressingRecognizer
+from ppdet.deploy.pipeline.ppvehicle.vehicle_retrograde import VehicleRetrogradeRecognizer
+from ppdet.deploy.pipeline.ppvehicle.lane_seg_infer import LaneSegPredictor
 
 from .download import auto_download_model
 

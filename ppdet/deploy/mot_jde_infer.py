@@ -13,26 +13,18 @@
 # limitations under the License.
 
 import os
-import time
-import yaml
 import cv2
 import numpy as np
 from collections import defaultdict
 import paddle
 
-from .benchmark_utils import PaddleInferBenchmark
-from .preprocess import decode_image
-from .utils import argsparser, Timer, get_current_memory_mb
-from .infer import Detector, get_test_images, print_arguments, bench_log, PredictConfig
+from ppdet.deploy.preprocess import decode_image
+from ppdet.deploy.utils import argsparser, Timer, get_current_memory_mb
+from ppdet.deploy.infer import Detector, get_test_images, print_arguments, bench_log
 
-# add python path
-# import sys
-# parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
-# sys.path.insert(0, parent_path)
-
-from .pptracking.mot import JDETracker
-from .pptracking.mot.utils import MOTTimer, write_mot_results
-from .pptracking.mot.visualize import plot_tracking_dict
+from ppdet.deploy.pptracking.mot import JDETracker
+from ppdet.deploy.pptracking.mot.utils import MOTTimer, write_mot_results
+from ppdet.deploy.pptracking.mot.visualize import plot_tracking_dict
 
 # Global dictionary
 MOT_JDE_SUPPORT_MODELS = {

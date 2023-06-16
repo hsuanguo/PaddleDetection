@@ -26,15 +26,11 @@ try:
 except Exception:
     from collections import Sequence
 
-# add deploy path of PaddleDetection to sys.path
-parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 3)))
-sys.path.insert(0, parent_path)
-
 from paddle.inference import Config, create_predictor
-from python.utils import argsparser, Timer, get_current_memory_mb
-from python.benchmark_utils import PaddleInferBenchmark
-from python.infer import Detector, print_arguments
-from pipeline.pphuman.attr_infer import AttrDetector
+from ppdet.deploy.utils import argsparser, Timer, get_current_memory_mb
+from ppdet.deploy.benchmark_utils import PaddleInferBenchmark
+from ppdet.deploy.infer import Detector, print_arguments
+from ppdet.deploy.pipeline.pphuman.attr_infer import AttrDetector
 
 
 class VehicleAttr(AttrDetector):

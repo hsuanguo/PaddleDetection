@@ -15,28 +15,20 @@
 import os
 import copy
 import math
-import time
-import yaml
 import cv2
 import numpy as np
 from collections import defaultdict
 import paddle
 
-from .benchmark_utils import PaddleInferBenchmark
-from .utils import gaussian_radius, gaussian2D, draw_umich_gaussian
-from .preprocess import preprocess, decode_image, WarpAffine, NormalizeImage, Permute
-from .utils import argsparser, Timer, get_current_memory_mb
-from .infer import Detector, get_test_images, print_arguments, bench_log, PredictConfig
-from .keypoint_preprocess import get_affine_transform
+from ppdet.deploy.utils import gaussian_radius, draw_umich_gaussian
+from ppdet.deploy.preprocess import preprocess, decode_image
+from ppdet.deploy.utils import argsparser, Timer, get_current_memory_mb
+from ppdet.deploy.infer import Detector, get_test_images, print_arguments, bench_log
+from ppdet.deploy.keypoint_preprocess import get_affine_transform
 
-# add python path
-# import sys
-# parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
-# sys.path.insert(0, parent_path)
-
-from .pptracking.mot import CenterTracker
-from .pptracking.mot.utils import MOTTimer, write_mot_results
-from .pptracking.mot.visualize import plot_tracking
+from ppdet.deploy.pptracking.mot import CenterTracker
+from ppdet.deploy.pptracking.mot.utils import MOTTimer, write_mot_results
+from ppdet.deploy.pptracking.mot.visualize import plot_tracking
 
 
 def transform_preds_with_trans(coords, trans):

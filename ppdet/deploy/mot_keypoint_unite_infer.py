@@ -22,17 +22,17 @@ import yaml
 import copy
 from collections import defaultdict
 
-from .mot_keypoint_unite_utils import argsparser
-from .preprocess import decode_image
-from .infer import print_arguments, get_test_images, bench_log
-from .mot_sde_infer import SDE_Detector
-from .mot_jde_infer import JDE_Detector, MOT_JDE_SUPPORT_MODELS
-from .keypoint_infer import KeyPointDetector, KEYPOINT_SUPPORT_MODELS
-from .det_keypoint_unite_infer import predict_with_given_det
-from .visualize import visualize_pose
-from .benchmark_utils import PaddleInferBenchmark
-from .utils import get_current_memory_mb
-from .keypoint_postprocess import translate_to_ori_images
+from ppdet.deploy.mot_keypoint_unite_utils import argsparser
+from ppdet.deploy.preprocess import decode_image
+from ppdet.deploy.infer import print_arguments, get_test_images, bench_log
+from ppdet.deploy.mot_sde_infer import SDE_Detector
+from ppdet.deploy.mot_jde_infer import JDE_Detector, MOT_JDE_SUPPORT_MODELS
+from ppdet.deploy.keypoint_infer import KeyPointDetector, KEYPOINT_SUPPORT_MODELS
+from ppdet.deploy.det_keypoint_unite_infer import predict_with_given_det
+from ppdet.deploy.visualize import visualize_pose
+from ppdet.deploy.benchmark_utils import PaddleInferBenchmark
+from ppdet.deploy.utils import get_current_memory_mb
+from ppdet.deploy.keypoint_postprocess import translate_to_ori_images
 
 # add python path
 # import sys
