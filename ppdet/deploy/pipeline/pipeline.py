@@ -81,6 +81,7 @@ class Pipeline(object):
         self.enable_mtmct = reid_cfg['enable'] if reid_cfg else False
         self.is_video = False
         self.output_dir = args.output_dir
+        self.skip_output_save = args.skip_output_save
         self.vis_result = cfg['visual']
         self.input = self._parse_input(args.image_file, args.image_dir,
                                        args.video_file, args.video_dir,
@@ -365,6 +366,8 @@ class PipePredictor(object):
         self.collector = DataCollector()
 
         self.pushurl = args.pushurl
+
+        self.skip_output_save = args.skip_output_save
 
         # auto download inference model
         get_model_dir(self.cfg)
@@ -662,6 +665,15 @@ class PipePredictor(object):
         frame_count = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
         print("video fps: %d, frame_count: %d" % (fps, frame_count))
 
+        # get file name without extension of video_file
+        video_file_name = os.path.basename(video_file)
+        video_file_name = os.path.splitext(video_file_name)[0]
+
+        if not os.path.exists(self.output_dir):
+            os.makedirs(self.output_dir)
+        output_meta_file = os.path.join(self.output_dir, f'{video_file_name}_predicts.txt')
+        output_meta_fp = open(output_meta_file, 'w')
+
         if len(self.pushurl) > 0:
             video_out_name = 'output' if self.file_name is None else self.file_name
             pushurl = os.path.join(self.pushurl, video_out_name)
@@ -679,7 +691,8 @@ class PipePredictor(object):
                 os.makedirs(self.output_dir)
             out_path = os.path.join(self.output_dir, video_out_name + ".mp4")
             fourcc = cv2.VideoWriter_fourcc(* 'mp4v')
-            writer = cv2.VideoWriter(out_path, fourcc, fps, (width, height))
+            if not self.skip_output_save:
+                writer = cv2.VideoWriter(out_path, fourcc, fps, (width, height))
 
         frame_id = 0
 
@@ -758,6 +771,14 @@ class PipePredictor(object):
 
                 # mot output format: id, class, score, xmin, ymin, xmax, ymax
                 mot_res = parse_mot_res(res)
+
+                # save mot result as [FrameId', 'Id', 'X', 'Y', 'Width', 'Height], using output_meta_fp
+                for i in range(len(mot_res['boxes'])):
+                    # [i, 0, score, xmin, ymin, xmin + w, ymin + h]
+                    box = mot_res['boxes'][i]
+                    output_meta_fp.write(f'{frame_id},{mot_res["ids"][i]},{box[0]},{box[1]},{box[2] - box[0]},{box[3] - box[1]}\n')
+
+
                 if frame_id > self.warmup_frame:
                     self.pipe_timer.module_time['mot'].end()
                     self.pipe_timer.track_num += len(mot_res['boxes'])
@@ -811,7 +832,8 @@ class PipePredictor(object):
                         if len(self.pushurl) > 0:
                             pushstream.pipe.stdin.write(im.tobytes())
                         else:
-                            writer.write(im)
+                            if not self.skip_output_save:
+                                writer.write(im)
                             if self.file_name is None:  # use camera_id
                                 cv2.imshow('Paddle-Pipeline', im)
                                 if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -1083,15 +1105,19 @@ class PipePredictor(object):
                 if len(self.pushurl) > 0:
                     pushstream.pipe.stdin.write(im.tobytes())
                 else:
-                    writer.write(im)
+                    if not self.skip_output_save:
+                        writer.write(im)
                     if self.file_name is None:  # use camera_id
                         cv2.imshow('Paddle-Pipeline', im)
                         if cv2.waitKey(1) & 0xFF == ord('q'):
                             break
 
         if self.cfg['visual'] and len(self.pushurl) == 0:
-            writer.release()
-            print('save result to {}'.format(out_path))
+            if not self.skip_output_save:
+                writer.release()
+                print('save result to {}'.format(out_path))
+
+        output_meta_fp.close()
 
     def visualize_video(self,
                         image_rgb,

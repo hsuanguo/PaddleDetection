@@ -64,6 +64,13 @@ def argsparser():
         default=None,
         help="Path of video file, `video_file` or `camera_id` has a highest priority."
     )
+
+    parser.add_argument(
+        "--skip_output_save",
+        action='store_true',
+        help="Output video will not be saved if it's set to True."
+    )
+
     parser.add_argument(
         "--video_dir",
         type=str,
